@@ -19,3 +19,9 @@ class PredChurnModelView(APIView):
         response=response_dict['response']
         status_value=response_dict['status']
         return Response(response,status_value)
+
+from rest_framework import status
+
+class HealthCheckView(APIView):
+    def get(self, request):
+        return Response({"status": "healthy"}, status=status.HTTP_200_OK)

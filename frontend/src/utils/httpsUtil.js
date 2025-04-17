@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000";
+// Use relative URL in production or environment variable
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? '/api' 
+  : "http://127.0.0.1:8000";
 
 export const trainModel = async () => {
   try {
@@ -14,7 +17,7 @@ export const trainModel = async () => {
 
 export const predictAttrition = async (features) => {
   try {
-    const response = await axios.post(`${BASE_URL}/prediction/`, { features });
+    const response = await axios.post(`${BASE_URL}/prediction/`, features);
     return response.data;
   } catch (error) {
     console.error("Error during prediction:", error);

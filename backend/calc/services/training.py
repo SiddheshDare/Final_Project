@@ -13,7 +13,7 @@ from sklearn.metrics import f1_score,recall_score,accuracy_score,precision_score
 base_path = os.getcwd()
 pickle_path = os.path.normpath(base_path + os.sep + 'pickle')
 log_path = os.path.normpath(base_path + os.sep + 'log')
-file_path = "D:\IIITB\Full_Stack_Project\Employee_Attrition_Prediction.csv"
+file_path = os.path.join(base_path, "data", "Employee_Attrition_Prediction.csv")
 
 # Data Processing and Model Training
 class Training:
