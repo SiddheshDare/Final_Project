@@ -42,9 +42,11 @@ pipeline {
         
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                    sh 'sonar-scanner'
-                }
+                echo 'SonarQube analysis temporarily disabled'
+                // Commenting out the SonarQube integration until the plugin is installed
+                // withSonarQubeEnv('SonarQubeServer') {
+                //     sh 'sonar-scanner'
+                // }
             }
         }
         
