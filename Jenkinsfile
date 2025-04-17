@@ -25,13 +25,9 @@ pipeline {
         stage('Backend Tests') {
             steps {
                 dir('backend') {
-                    sh '''
-                    docker run --rm -v "$PWD:/app" -w /app python:3.10-slim /bin/bash -c "
-                      pip install --upgrade pip
-                      pip install -r requirements.txt
-                      python manage.py test
-                    "
-                    '''
+                    sh 'python3 -m pip install --upgrade pip'
+                    sh 'pip3 install -r requirements.txt'
+                    sh 'python3 manage.py test'
                 }
             }
         }
