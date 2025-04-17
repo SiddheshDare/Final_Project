@@ -97,11 +97,11 @@ pipeline {
         }
         success {
             echo 'Pipeline executed successfully!'
-            slackSend(channel: '#deployments', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            // Remove or comment out the slackSend line
         }
         failure {
             echo 'Pipeline execution failed!'
-            slackSend(channel: '#deployments', color: 'danger', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            // Remove or comment out the slackSend line
         }
     }
 }
