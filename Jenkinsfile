@@ -7,9 +7,9 @@ pipeline {
     }
     
     environment {
-        DOCKER_HUB_CREDS = credentials('docker-hub-credentials')
-        DOCKER_IMAGE_BACKEND = 'yourdockerhub/ml-backend'
-        DOCKER_IMAGE_FRONTEND = 'yourdockerhub/ml-frontend'
+        DOCKER_HUB_CREDS = credentials('DockerHubCred')
+        DOCKER_IMAGE_BACKEND = 'siddhesh01/ml-backend'  // Change 'yourusername'
+        DOCKER_IMAGE_FRONTEND = 'siddhesh01/ml-frontend'  // Change 'yourusername'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         KUBECONFIG = credentials('kubeconfig')
     }
