@@ -4,7 +4,6 @@ pipeline {
     tools {
         nodejs 'NodeJS' // Configure in Jenkins Global Tool Configuration
         jdk 'JDK'       // Configure in Jenkins Global Tool Configuration
-        python 'Python3'  // Add this line
     }
     
     environment {
