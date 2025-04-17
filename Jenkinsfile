@@ -4,6 +4,7 @@ pipeline {
     tools {
         nodejs 'NodeJS' // Configure in Jenkins Global Tool Configuration
         jdk 'JDK'       // Configure in Jenkins Global Tool Configuration
+        python 'Python3'  // Add this line
     }
     
     environment {
@@ -24,9 +25,13 @@ pipeline {
         stage('Backend Tests') {
             steps {
                 dir('backend') {
-                    sh 'python -m pip install --upgrade pip'
-                    sh 'pip install -r requirements.txt'
-                    sh 'python manage.py test'
+                    sh '''
+                    docker run --rm -v "$PWD:/app" -w /app python:3.10-slim /bin/bash -c "
+                      pip install --upgrade pip
+                      pip install -r requirements.txt
+                      python manage.py test
+                    "
+                    '''
                 }
             }
         }
