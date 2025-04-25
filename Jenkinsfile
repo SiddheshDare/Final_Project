@@ -80,14 +80,18 @@ pipeline {
         
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl --kubeconfig=${KUBECONFIG} apply -f kubernetes/'
+                withKubeConfig([credentialsId: 'kubeconfig', namespace: 'ml-app']) {
+                    sh 'kubectl apply -f kubernetes/'
+                }
             }
         }
         
         stage('Verify Deployment') {
             steps {
-                sh 'kubectl --kubeconfig=${KUBECONFIG} rollout status deployment/backend -n ml-app'
-                sh 'kubectl --kubeconfig=${KUBECONFIG} rollout status deployment/frontend -n ml-app'
+                withKubeConfig([credentialsId: 'kubeconfig', namespace: 'ml-app']) {
+                    sh 'kubectl rollout status deployment/backend -n ml-app'
+                    sh 'kubectl rollout status deployment/frontend -n ml-app'
+                }
             }
         }
     }
